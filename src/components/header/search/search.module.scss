@@ -1,0 +1,13 @@
+@import '../../../styles/colors.scss';
+
+.search {
+  width: 100%;
+  outline: none;
+  background-color: $context-white-color;
+  color: $system-secondary-color;
+  border: 2px solid $context-light-color;
+  border-radius: 10px;
+  line-height: 150%;
+  font-weight: 500;
+  padding: 16px 0 16px 20px;
+}

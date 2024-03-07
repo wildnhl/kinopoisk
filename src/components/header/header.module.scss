@@ -1,0 +1,14 @@
+@import '../../styles/colors.scss';
+
+.logo {
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.moviesStart {
+  color: $system-primary-color;
+}
+
+.moviesEnd {
+  color: $background-dark-color;
+}
