@@ -45,8 +45,7 @@ module.exports = {
       }
     ],
     '@typescript-eslint/comma-dangle': 0,
-
     'react/jsx-one-expression-per-line': 0,
-    '@typescript-eslint/no-unused-vars': 1
+    '@typescript-eslint/no-unused-vars': 0
   }
 };
