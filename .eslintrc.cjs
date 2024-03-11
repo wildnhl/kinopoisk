@@ -18,7 +18,8 @@ module.exports = {
     'airbnb-typescript',
     'airbnb/hooks',
     'plugin:react/recommended',
-    'plugin:@typescript-eslint/recommended'
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended'
   ],
   overrides: [
     {
@@ -46,6 +47,10 @@ module.exports = {
     ],
     '@typescript-eslint/comma-dangle': 0,
     'react/jsx-one-expression-per-line': 0,
-    '@typescript-eslint/no-unused-vars': 0
+    '@typescript-eslint/no-unused-vars': 0,
+    'no-param-reassign': [
+      'error',
+      { props: true, ignorePropertyModificationsFor: ['state'] }
+    ]
   }
 };
