@@ -7,6 +7,7 @@ export const store = configureStore({
     singleMovie: singleMovieReducer
   }
 });
+
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

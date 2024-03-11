@@ -12,5 +12,5 @@ export function MovieList() {
   if (movie === null) {
     return <div>Loading...</div>;
   }
-  return <div>{movie.nameOriginal}</div>;
+  return <div>{movie.countries.map((el) => el.country)}</div>;
 }

@@ -15,6 +15,14 @@ type InitialData = {
   movieData: ISingleMovie | null;
 };
 
+type Genres = {
+  genre: string;
+};
+
+type Countries = {
+  country: string;
+};
+
 const initialState: InitialData = {
   movieData: null
 };
@@ -58,16 +66,8 @@ interface ISingleMovie {
   hasImax: boolean;
   has3D: boolean;
   lastSync: string;
-  countries: [
-    {
-      country: string;
-    }
-  ];
-  genres: [
-    {
-      genre: string;
-    }
-  ];
+  countries: Countries[];
+  genres: Genres[];
   startYear: number;
   endYear: number;
   serial: boolean;
