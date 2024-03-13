@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch, TypedUseSelectorHook, useSelector } from 'react-redux';
 import { singleMovieReducer } from './single-movie-slice';
+import { searchMoviesReducer } from './search-movies-slice';
 
 export const store = configureStore({
   reducer: {
-    singleMovie: singleMovieReducer
+    singleMovie: singleMovieReducer,
+    searchMovies: searchMoviesReducer
   }
 });
 

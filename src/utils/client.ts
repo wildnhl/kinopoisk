@@ -1,9 +1,8 @@
 import axios from 'axios';
 
 export const client = axios.create({
-  baseURL: 'https://kinopoiskapiunofficial.tech/',
-  timeout: 1000,
-  headers: { 'x-api-key': 'c391646a-c25d-4b66-91a2-5053ead80f9a' }
+  baseURL: 'http://www.omdbapi.com',
+  timeout: 1000
 });
 
 // export const setAccessTokenCLient = (token: string) => {

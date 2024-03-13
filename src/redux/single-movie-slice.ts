@@ -2,11 +2,13 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { fetchSingleMovie } from '../services/single-movie';
 
-export const fetchSingleMovieThunk = createAsyncThunk(
+export const fetchSingleMovieThunk = createAsyncThunk<ISingleMovie, string>(
   'singleMovie/fetchSingleMovieThunk',
-  async (id: number) => {
-    const data = await fetchSingleMovie(id);
-    console.log(data);
+  async (i) => {
+    const data = await fetchSingleMovie({
+      apikey: 'e27e767',
+      i
+    });
     return data;
   }
 );
@@ -15,12 +17,9 @@ type InitialData = {
   movieData: ISingleMovie | null;
 };
 
-type Genres = {
-  genre: string;
-};
-
-type Countries = {
-  country: string;
+type Ratings = {
+  Source: string;
+  Value: string;
 };
 
 const initialState: InitialData = {
@@ -28,51 +27,28 @@ const initialState: InitialData = {
 };
 
 interface ISingleMovie {
-  kinopoiskId: number;
-  kinopoiskHDId: string;
-  imdbId: string;
-  nameRu: string;
-  nameEn: string;
-  nameOriginal: string;
-  posterUrl: string;
-  posterUrlPreview: string;
-  coverUrl: string;
-  logoUrl: string;
-  reviewsCount: number;
-  ratingGoodReview: number;
-  ratingGoodReviewVoteCount: number;
-  ratingKinopoisk: number;
-  ratingKinopoiskVoteCount: number;
-  ratingImdb: number;
-  ratingImdbVoteCount: number;
-  ratingFilmCritics: number;
-  ratingFilmCriticsVoteCount: number;
-  ratingAwait: number;
-  ratingAwaitCount: number;
-  ratingRfCritics: number;
-  ratingRfCriticsVoteCount: number;
-  webUrl: string;
-  year: number;
-  filmLength: number;
-  slogan: string;
-  description: string;
-  shortDescription: string;
-  editorAnnotation: string;
-  isTicketsAvailable: false;
-  productionStatus: string;
-  type: string;
-  ratingMpaa: string;
-  ratingAgeLimits: string;
-  hasImax: boolean;
-  has3D: boolean;
-  lastSync: string;
-  countries: Countries[];
-  genres: Genres[];
-  startYear: number;
-  endYear: number;
-  serial: boolean;
-  shortFilm: boolean;
-  completed: boolean;
+  Title: string;
+  Year: string;
+  Rated: string;
+  Released: string;
+  Runtime: string;
+  Genre: string;
+  Director: string;
+  Writer: string;
+  Actors: string;
+  Plot: string;
+  Language: string;
+  Country: string;
+  Awards: string;
+  Poster: string;
+  Ratings: Ratings[];
+  Metascore: string;
+  imdbRating: string;
+  imdbVotes: string;
+  imdbID: string;
+  Type: string;
+  totalSeasons: string;
+  Response: string;
 }
 
 export const singleMovieSlice = createSlice({

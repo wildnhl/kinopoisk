@@ -1,11 +1,11 @@
 import { client } from '../utils/client';
 
-type ParamsById = {
+type ParamsSearch = {
   apikey: string;
-  i: string;
+  s: string;
 };
 
-export async function fetchSingleMovie(params: ParamsById) {
+export async function fetchSearchMovies(params: ParamsSearch) {
   const { data } = await client.get('', { params });
   return data;
 }
