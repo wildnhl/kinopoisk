@@ -1,19 +1,31 @@
-import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../redux/store';
-import { fetchSingleMovieThunk } from '../../../redux/single-movie-slice';
-import { fetchSearchMoviesThunk } from '../../../redux/search-movies-slice';
+import { useAppSelector } from '../../../redux/store';
+import { MovieCard } from '../MovieCard/MovieCard';
+import cl from './MovieList.module.scss';
 
 export function MovieList() {
-  const dispatch = useAppDispatch();
-  const movie = useAppSelector((state) => state.singleMovie.movieData);
-  useEffect(() => {
-    dispatch(fetchSingleMovieThunk('tt0903747'));
-  }, [dispatch]);
-  useEffect(() => {
-    dispatch(fetchSearchMoviesThunk('Batman'));
-  }, [dispatch]);
-  if (movie === null) {
+  const movie = useAppSelector((state) => state.searchMovies.moviesData);
+  const error = useAppSelector((state) => state.searchMovies.error);
+  const isLoading = useAppSelector((state) => state.searchMovies.isLoading);
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  if (isLoading) {
     return <div>Loading...</div>;
   }
-  return <div>{movie.Title}</div>;
+
+  return (
+    <ul className={cl.outerStyle}>
+      {movie.map((el) => (
+        <MovieCard
+          key={el.imdbID}
+          Poster={el.Poster}
+          Title={el.Title}
+          Year={el.Year}
+          error={error}
+          isLoading={isLoading}
+        />
+      ))}
+    </ul>
+  );
 }

@@ -1,7 +1,6 @@
 import { client } from '../utils/client';
 
 type ParamsSearch = {
-  apikey: string;
   s: string;
 };
 
