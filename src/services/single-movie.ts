@@ -1,8 +1,8 @@
 import { client } from '../utils/client';
 
 type ParamsById = {
-  apikey: string;
-  i: string;
+  i: string | undefined;
+  plot: string;
 };
 
 export async function fetchSingleMovie(params: ParamsById) {
