@@ -15,10 +15,11 @@ export function MovieList() {
   }
 
   return (
-    <ul className={cl.outerStyle}>
+    <div className={cl.outerStyle}>
       {movie.map((el) => (
         <MovieCard
           key={el.imdbID}
+          id={el.imdbID}
           Poster={el.Poster}
           Title={el.Title}
           Year={el.Year}
@@ -26,6 +27,6 @@ export function MovieList() {
           isLoading={isLoading}
         />
       ))}
-    </ul>
+    </div>
   );
 }
