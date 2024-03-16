@@ -1,0 +1,27 @@
+@import '../../../styles/colors.scss';
+.outer {
+  display: flex;
+  gap: 42px;
+}
+
+.infoTitle {
+  color: $context-light-color;
+}
+.infoText {
+  color: $background-dark-color;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 40px;
+}
+
+.image {
+  max-width: 266px;
+  max-height: 356px;
+  border-radius: 20px;
+}
+
+.plot {
+  max-width: 878px;
+}
