@@ -1,7 +1,8 @@
 import { client } from '../utils/client';
 
-type ParamsSearch = {
+export type ParamsSearch = {
   s: string;
+  page?: number;
 };
 
 export async function fetchSearchMovies(params: ParamsSearch) {

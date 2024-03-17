@@ -1,0 +1,14 @@
+@import '../../../styles/colors.scss';
+
+.link {
+  color: $background-dark-color;
+  text-decoration: none;
+}
+
+.image {
+  border-radius: 20px;
+  margin-bottom: 20px;
+  width: 266px;
+  height: 357px;
+  object-fit: cover;
+}

@@ -1,18 +1,17 @@
 import { Link } from 'react-router-dom';
+import cl from './MovieCard.module.scss';
 
 type Movie = {
   Poster: string;
   Title: string;
-  Year: string;
   id: string;
 };
 
-export function MovieCard({ Poster, Title, Year, id }: Movie) {
+export function MovieCard({ Poster, Title, id }: Movie) {
   return (
-    <Link to={`/movie/${id}`}>
-      <img src={Poster} alt={Title} />
+    <Link className={cl.link} to={`/movie/${id}`}>
+      <img className={cl.image} src={Poster} alt={Title} />
       <p>{Title}</p>
-      <p>{Year}</p>
     </Link>
   );
 }
