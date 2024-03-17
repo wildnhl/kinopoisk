@@ -1,12 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import type { RootState } from './store';
 import { fetchSearchMovies, ParamsSearch } from '../services/search-movies';
 
 export const fetchSearchMoviesThunk = createAsyncThunk<
   FetchResult,
   ParamsSearch,
-  {
-    rejectValue: string;
-  }
+  { state: RootState }
 >(
   'searchMovies/fetchSearchMoviesThunk',
   async (opts, { rejectWithValue, getState }) => {
