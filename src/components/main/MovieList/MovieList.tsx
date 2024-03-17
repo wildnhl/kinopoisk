@@ -8,6 +8,7 @@ import cl from './MovieList.module.scss';
 export function MovieList() {
   const dispatch = useAppDispatch();
   const { pageNumber } = useParams();
+
   const movie = useAppSelector((state) => state.searchMovies.moviesData);
   const error = useAppSelector((state) => state.searchMovies.error);
   const isLoading = useAppSelector((state) => state.searchMovies.isLoading);

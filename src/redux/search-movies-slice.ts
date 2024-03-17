@@ -44,8 +44,7 @@ export const searchMoviesSlice = createSlice({
     builder.addCase(fetchSearchMoviesThunk.fulfilled, (state, action) => {
       state.isLoading = false;
       state.moviesData = action.payload.Search;
-      const page = Math.floor(+action.payload.totalResults / 10);
-      state.pages = page;
+      state.pages = Math.floor(+action.payload.totalResults / 10);
     });
     builder.addCase(fetchSearchMoviesThunk.pending, (state) => {
       state.error = null;

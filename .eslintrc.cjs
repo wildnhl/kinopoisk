@@ -51,6 +51,7 @@ module.exports = {
     'no-param-reassign': [
       'error',
       { props: true, ignorePropertyModificationsFor: ['state'] }
-    ]
+    ],
+    'react/no-array-index-key': 0
   }
 };
