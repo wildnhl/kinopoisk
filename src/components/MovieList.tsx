@@ -13,17 +13,17 @@ export function MovieList() {
   const error = useAppSelector((state) => state.searchMovies.error);
   const isLoading = useAppSelector((state) => state.searchMovies.isLoading);
   const searchValue = useAppSelector((state) => state.searchMovies.searchValue);
-  const typeValue = useAppSelector((state) => state.searchMovies.typeSearch);
+  const type = useAppSelector((state) => state.searchMovies.typeSearch);
+  const year = useAppSelector((state) => state.searchMovies.year);
 
   useEffect(() => {
     dispatch(
       fetchSearchMoviesThunk({
         page: Number(pageNumber),
-        s: searchValue,
-        type: typeValue
+        s: searchValue
       })
     );
-  }, [dispatch, pageNumber, searchValue, typeValue]);
+  }, [dispatch, pageNumber, searchValue, type, year]);
 
   if (error) {
     return <div>Error: {error}</div>;

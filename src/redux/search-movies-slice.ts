@@ -9,10 +9,10 @@ export const fetchSearchMoviesThunk = createAsyncThunk<
 >(
   'searchMovies/fetchSearchMoviesThunk',
   async (opts, { rejectWithValue, getState }) => {
-    const { searchValue } = getState().searchMovies;
-    const { s = searchValue, page = 1, type } = opts;
+    const { searchValue, typeSearch, year } = getState().searchMovies;
+    const { s = searchValue, page = 1, type = typeSearch, y = year } = opts;
     try {
-      const data = await fetchSearchMovies({ s, page, type });
+      const data = await fetchSearchMovies({ s, page, type, y });
       if (data.Response === 'False') {
         throw new Error(data.Error);
       }
@@ -29,7 +29,8 @@ const initialState: InitType = {
   error: null,
   searchValue: '',
   pages: 1,
-  typeSearch: ''
+  typeSearch: 'movie',
+  year: ''
 };
 
 export const searchMoviesSlice = createSlice({
@@ -41,6 +42,9 @@ export const searchMoviesSlice = createSlice({
     },
     setSearchTypeAction: (state, action) => {
       state.typeSearch = action.payload;
+    },
+    setSearchYearAction: (state, action) => {
+      state.year = action.payload;
     }
   },
   extraReducers: (builder) => {
@@ -59,8 +63,11 @@ export const searchMoviesSlice = createSlice({
     });
   }
 });
-export const { setSearchValueAction, setSearchTypeAction } =
-  searchMoviesSlice.actions;
+export const {
+  setSearchValueAction,
+  setSearchTypeAction,
+  setSearchYearAction
+} = searchMoviesSlice.actions;
 
 export const searchMoviesReducer = searchMoviesSlice.reducer;
 
@@ -79,6 +86,7 @@ type InitType = {
   searchValue: string;
   pages: number;
   typeSearch: string;
+  year: string;
 };
 
 type FetchResult = {
