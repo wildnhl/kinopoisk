@@ -1,40 +1,20 @@
 import cl from '../styles/singleMovie.module.scss';
+import type { ISingleMovie } from '../types/singleMovieTypes';
 
-export function SingleMovie({
-  error,
-  isLoading,
-  Title,
-  Actors,
-  Country,
-  Director,
-  Genre,
-  Metascore,
-  Plot,
-  Poster,
-  Rated,
-  Ratings,
-  Released,
-  Runtime,
-  Type,
-  Writer,
-  Year,
-  imdbID,
-  imdbRating,
-  imdbVotes
-}: ISingleProps) {
-  if (error) {
-    return <div>Error: {error}</div>;
+export function SingleMovie(props: ISingleMovie) {
+  if (props.error) {
+    return <div>Error: {props.error}</div>;
   }
-  if (isLoading) {
+  if (props.isLoading) {
     return <div>Loading...</div>;
   }
   return (
     <div className={cl.outer}>
-      <img className={cl.image} src={Poster} alt={Title} />
+      <img className={cl.image} src={props.Poster} alt={props.Title} />
       <div>
-        <p>{Genre}</p>
-        <h2 className={cl.title}>{Title}</h2>
-        <p className={cl.plot}>{Plot}</p>
+        <p>{props.Genre}</p>
+        <h2 className={cl.title}>{props.Title}</h2>
+        <p className={cl.plot}>{props.Plot}</p>
         <div className="d-flex gap-5 mt-5">
           <div className="d-flex flex-column gap-3">
             <p className={cl.infoTitle}>Year</p>
@@ -45,42 +25,15 @@ export function SingleMovie({
             <p className={cl.infoTitle}>Writers</p>
           </div>
           <div className="d-flex flex-column gap-3">
-            <p>{Year}</p>
-            <p>{Released}</p>
-            <p>{Country}</p>
-            <p>{Actors}</p>
-            <p>{Director}</p>
-            <p>{Writer}</p>
+            <p>{props.Year}</p>
+            <p>{props.Released}</p>
+            <p>{props.Country}</p>
+            <p>{props.Actors}</p>
+            <p>{props.Director}</p>
+            <p>{props.Writer}</p>
           </div>
         </div>
       </div>
     </div>
   );
 }
-interface ISingleProps {
-  Title: string;
-  Year: string;
-  Rated: string;
-  Released: string;
-  Runtime: string;
-  Genre: string;
-  Director: string;
-  Writer: string;
-  Actors: string;
-  Plot: string;
-  Country: string;
-  Poster: string;
-  Ratings: Ratings[];
-  Metascore: string;
-  imdbRating: string;
-  imdbVotes: string;
-  imdbID: string;
-  Type: string;
-  totalSeasons?: string;
-  error: string | null;
-  isLoading: boolean;
-}
-type Ratings = {
-  Source: string;
-  Value: string;
-};

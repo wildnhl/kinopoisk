@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../redux/store';
 import { fetchSearchMoviesThunk } from '../redux/search-movies-slice';
 import { MovieCard } from './MovieCard';
-import cl from '../styles/MovieList.module.scss';
+import cl from '../styles/movieList.module.scss';
 
 export function MovieList() {
   const dispatch = useAppDispatch();

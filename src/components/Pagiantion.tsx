@@ -54,7 +54,7 @@ export function Pagination() {
     });
   }
   return (
-    <div className="d-flex gap-4 align-items-center">
+    <div className="d-flex gap-4">
       <nav aria-label="Page navigation example">
         <ul className="pagination mt-3">{renderPagination()}</ul>
       </nav>

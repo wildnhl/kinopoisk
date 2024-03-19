@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import cl from '../styles/MovieCard.module.scss';
+import cl from '../styles/movieCard.module.scss';
 
 type Movie = {
   Poster: string;

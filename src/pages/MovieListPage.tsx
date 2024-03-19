@@ -4,8 +4,8 @@ import { Pagination } from '../components/Pagiantion';
 export function MovieListPage() {
   return (
     <>
-      <MovieList />
       <Pagination />
+      <MovieList />
     </>
   );
 }

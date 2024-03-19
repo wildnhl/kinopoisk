@@ -11,9 +11,8 @@ export function MoviePage() {
   const movie = useAppSelector((state) => state.singleMovie.movieData);
   const movieError = useAppSelector((state) => state.singleMovie.error);
   const movieIsLoading = useAppSelector((state) => state.singleMovie.isLoading);
-
   useEffect(() => {
-    dispatch(fetchSingleMovieThunk(id));
+    dispatch(fetchSingleMovieThunk(String(id)));
   }, [dispatch, id]);
   return (
     <SingleMovie {...movie} error={movieError} isLoading={movieIsLoading} />

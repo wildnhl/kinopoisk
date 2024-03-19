@@ -52,6 +52,8 @@ module.exports = {
       'error',
       { props: true, ignorePropertyModificationsFor: ['state'] }
     ],
-    'react/no-array-index-key': 0
+    'react/no-array-index-key': 0,
+    'react/destructuring-assignment': 0,
+    'react/jsx-props-no-spreading': 0
   }
 };
