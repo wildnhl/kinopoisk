@@ -10,9 +10,9 @@ export const fetchSearchMoviesThunk = createAsyncThunk<
   'searchMovies/fetchSearchMoviesThunk',
   async (opts, { rejectWithValue, getState }) => {
     const { searchValue } = getState().searchMovies;
-    const { s = searchValue, page = 1 } = opts;
+    const { s = searchValue, page = 1, type } = opts;
     try {
-      const data = await fetchSearchMovies({ s, page });
+      const data = await fetchSearchMovies({ s, page, type });
       if (data.Response === 'False') {
         throw new Error(data.Error);
       }
@@ -28,7 +28,8 @@ const initialState: InitType = {
   isLoading: false,
   error: null,
   searchValue: '',
-  pages: 1
+  pages: 1,
+  typeSearch: ''
 };
 
 export const searchMoviesSlice = createSlice({
@@ -37,6 +38,9 @@ export const searchMoviesSlice = createSlice({
   reducers: {
     setSearchValueAction: (state, action) => {
       state.searchValue = action.payload;
+    },
+    setSearchTypeAction: (state, action) => {
+      state.typeSearch = action.payload;
     }
   },
   extraReducers: (builder) => {
@@ -55,7 +59,8 @@ export const searchMoviesSlice = createSlice({
     });
   }
 });
-export const { setSearchValueAction } = searchMoviesSlice.actions;
+export const { setSearchValueAction, setSearchTypeAction } =
+  searchMoviesSlice.actions;
 
 export const searchMoviesReducer = searchMoviesSlice.reducer;
 
@@ -73,6 +78,7 @@ type InitType = {
   error: string | null;
   searchValue: string;
   pages: number;
+  typeSearch: string;
 };
 
 type FetchResult = {

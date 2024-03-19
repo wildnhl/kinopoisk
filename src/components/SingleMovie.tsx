@@ -1,4 +1,4 @@
-import cl from './singleMovie.module.scss';
+import cl from '../styles/singleMovie.module.scss';
 
 export function SingleMovie({
   error,

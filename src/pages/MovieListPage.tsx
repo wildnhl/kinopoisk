@@ -1,4 +1,4 @@
-import { MovieList } from '../components/main/MovieList/MovieList';
+import { MovieList } from '../components/MovieList';
 import { Pagination } from '../components/Pagiantion';
 
 export function MovieListPage() {

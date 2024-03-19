@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useAppSelector, useAppDispatch } from '../../../redux/store';
-import { fetchSearchMoviesThunk } from '../../../redux/search-movies-slice';
-import { MovieCard } from '../MovieCard/MovieCard';
-import cl from './MovieList.module.scss';
+import { useAppSelector, useAppDispatch } from '../redux/store';
+import { fetchSearchMoviesThunk } from '../redux/search-movies-slice';
+import { MovieCard } from './MovieCard';
+import cl from '../styles/MovieList.module.scss';
 
 export function MovieList() {
   const dispatch = useAppDispatch();
@@ -12,14 +12,18 @@ export function MovieList() {
   const movie = useAppSelector((state) => state.searchMovies.moviesData);
   const error = useAppSelector((state) => state.searchMovies.error);
   const isLoading = useAppSelector((state) => state.searchMovies.isLoading);
+  const searchValue = useAppSelector((state) => state.searchMovies.searchValue);
+  const typeValue = useAppSelector((state) => state.searchMovies.typeSearch);
 
   useEffect(() => {
     dispatch(
       fetchSearchMoviesThunk({
-        page: pageNumber
+        page: Number(pageNumber),
+        s: searchValue,
+        type: typeValue
       })
     );
-  }, [dispatch, pageNumber]);
+  }, [dispatch, pageNumber, searchValue, typeValue]);
 
   if (error) {
     return <div>Error: {error}</div>;

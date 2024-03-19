@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { Search } from './search/Search';
-import cl from './header.module.scss';
+import { Search } from './Search';
+import cl from '../styles/header.module.scss';
 
 export function Header() {
   return (
