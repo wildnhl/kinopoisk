@@ -25,12 +25,12 @@ function* fetchSeasonsOrEpisodesSaga(action) {
 
 interface IinitialState {
   error: string;
-  season: Season[] | [];
+  season: Season | null;
   episode: IEpisode | null;
 }
 const initialState: IinitialState = {
   error: '',
-  season: [],
+  season: null,
   episode: null
 };
 

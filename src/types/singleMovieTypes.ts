@@ -68,7 +68,7 @@ export type Season = {
   Response: string;
 };
 
-type Episode = {
+export type Episode = {
   Title: string;
   Released: string;
   Episode: string;
