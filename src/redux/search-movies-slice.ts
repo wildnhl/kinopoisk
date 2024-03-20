@@ -5,7 +5,10 @@ import { fetchSearchMovies, ParamsSearch } from '../services/search-movies';
 export const fetchSearchMoviesThunk = createAsyncThunk<
   FetchResult,
   ParamsSearch,
-  { state: RootState }
+  {
+    state: RootState;
+    rejectValue: string;
+  }
 >(
   'searchMovies/fetchSearchMoviesThunk',
   async (opts, { rejectWithValue, getState }) => {
@@ -13,12 +16,16 @@ export const fetchSearchMoviesThunk = createAsyncThunk<
     const { s = searchValue, page = 1, type = typeSearch, y = year } = opts;
     try {
       const data = await fetchSearchMovies({ s, page, type, y });
-      if (data.Response === 'False') {
+
+      if (data.Error) {
         throw new Error(data.Error);
       }
       return data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      if (error instanceof Error) {
+        return rejectWithValue(error.message);
+      }
+      return rejectWithValue('something went wrong');
     }
   }
 );
@@ -26,7 +33,7 @@ export const fetchSearchMoviesThunk = createAsyncThunk<
 const initialState: InitType = {
   moviesData: [],
   isLoading: false,
-  error: null,
+  error: '',
   searchValue: '',
   pages: 1,
   typeSearch: 'movie',
@@ -51,10 +58,10 @@ export const searchMoviesSlice = createSlice({
     builder.addCase(fetchSearchMoviesThunk.fulfilled, (state, action) => {
       state.isLoading = false;
       state.moviesData = action.payload.Search;
-      state.pages = Math.floor(+action.payload.totalResults / 10);
+      state.pages = Math.ceil(+action.payload.totalResults / 10);
     });
     builder.addCase(fetchSearchMoviesThunk.pending, (state) => {
-      state.error = null;
+      state.error = '';
       state.isLoading = true;
     });
     builder.addCase(fetchSearchMoviesThunk.rejected, (state, action) => {
@@ -82,7 +89,7 @@ type Movie = {
 type InitType = {
   moviesData: Movie[] | [];
   isLoading: boolean;
-  error: string | null;
+  error?: string;
   searchValue: string;
   pages: number;
   typeSearch: string;

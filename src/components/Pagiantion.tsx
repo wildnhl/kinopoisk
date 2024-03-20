@@ -29,7 +29,6 @@ export function Pagination() {
       return result;
     }
     const paginationScheme = buildPaginationScheme();
-
     return paginationScheme.map((numberPage, index) => {
       if (Number.isNaN(numberPage)) {
         return (

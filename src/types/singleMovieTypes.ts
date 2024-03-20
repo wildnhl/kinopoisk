@@ -28,37 +28,50 @@ export interface ISingleMovie {
   isLoading: boolean;
 }
 
-// export interface ISingleSeries {
-//   Actors: string;
-//   Awards: string;
-//   Country: string;
-//   Director: string;
-//   Genre: string;
-//   Language: string;
-//   Metascore: string;
-//   Plot: string;
-//   Poster: string;
-//   Rated: string;
-//   Ratings: Ratings[];
-//   Released: string;
-//   Response: string;
-//   Runtime: string;
-//   Title: string;
-//   Type: string;
-//   Writer: string;
-//   Year: string;
-//   imdbID: string;
-//   imdbRating: string;
-//   imdbVotes: string;
-//   totalSeasons: string | undefined;
-// }
+export interface IEpisode {
+  Title: string;
+  Year: string;
+  Rated: string;
+  Released: string;
+  Season: string;
+  Episode: string;
+  Runtime: string;
+  Genre: string;
+  Director: string;
+  Writer: string;
+  Actors: string;
+  Plot: string;
+  Language: string;
+  Country: string;
+  Awards: string;
+  Poster: string;
+  Ratings?: [];
+  Metascore: string;
+  imdbRating: string;
+  imdbVotes: string;
+  imdbID: string;
+  seriesID: string;
+  Type: string;
+  Response: string;
+}
 
 type Ratings = {
   Source: string;
   Value: string;
 };
 
-// export interface IErrorLoadingProps {
-//   error: string | null;
-//   isLoading: boolean;
-// }
+export type Season = {
+  Title: string;
+  Season: string;
+  totalSeasons: string;
+  Episodes: Episode[];
+  Response: string;
+};
+
+type Episode = {
+  Title: string;
+  Released: string;
+  Episode: string;
+  imdbRating: string;
+  imdbID: string;
+};

@@ -41,8 +41,6 @@ export function MovieList() {
           id={el.imdbID}
           Poster={el.Poster}
           Title={el.Title}
-          error={error}
-          isLoading={isLoading}
         />
       ))}
     </div>

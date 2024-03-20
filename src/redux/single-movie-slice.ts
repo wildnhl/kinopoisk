@@ -2,25 +2,31 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { ISingleMovie } from '../types/singleMovieTypes';
 import { fetchSingleMovie } from '../services/single-movie';
 
-export const fetchSingleMovieThunk = createAsyncThunk<ISingleMovie, string>(
-  'singleMovie/fetchSingleMovieThunk',
-  async (i, { rejectWithValue }) => {
-    try {
-      const data = await fetchSingleMovie({ i, plot: 'full' });
-      if (data.Response === 'False') {
-        throw new Error(data.Error);
-      }
-      return data;
-    } catch (error) {
+export const fetchSingleMovieThunk = createAsyncThunk<
+  ISingleMovie,
+  string,
+  {
+    rejectValue: string;
+  }
+>('singleMovie/fetchSingleMovieThunk', async (i, { rejectWithValue }) => {
+  try {
+    const data = await fetchSingleMovie({ i, plot: 'full' });
+    if (data.Response === 'False') {
+      throw new Error(data.Error);
+    }
+    return data;
+  } catch (error) {
+    if (error instanceof Error) {
       return rejectWithValue(error.message);
     }
+    return rejectWithValue('something went wrong');
   }
-);
+});
 
 const initialState: InitialData = {
   movieData: null,
   isLoading: false,
-  error: null
+  error: ''
 };
 
 export const singleMovieSlice = createSlice({
@@ -33,7 +39,7 @@ export const singleMovieSlice = createSlice({
       state.movieData = action.payload;
     });
     builder.addCase(fetchSingleMovieThunk.pending, (state) => {
-      state.error = null;
+      state.error = '';
       state.isLoading = true;
     });
     builder.addCase(fetchSingleMovieThunk.rejected, (state, action) => {
@@ -48,5 +54,5 @@ export const singleMovieReducer = singleMovieSlice.reducer;
 type InitialData = {
   movieData: ISingleMovie | null;
   isLoading: boolean;
-  error: string | null;
+  error?: string;
 };
