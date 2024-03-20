@@ -18,7 +18,7 @@ export function SeasonSelector(props: ISingleMovie) {
   };
   let seasons;
   if (season) {
-    seasons = Array(Number(season.totalSeasons)).fill('..');
+    seasons = Array(Number(season.totalSeasons)).fill('.');
   }
   useEffect(() => {
     dispatch(

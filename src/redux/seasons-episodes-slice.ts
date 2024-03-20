@@ -1,15 +1,20 @@
-import { call, put, select } from 'redux-saga/effects';
-import { createSlice, createAction, createAsyncThunk } from '@reduxjs/toolkit';
+import { call, put } from 'redux-saga/effects';
+import { createSlice, createAction } from '@reduxjs/toolkit';
 import { fetchSeasonsOrEpisodes } from '../services/seasons-episodes';
 import type { IEpisode, Season } from '../types/singleMovieTypes';
 
-type Action = {
+type ReturnType = {
   i: string;
   Season: string;
   Episode?: string;
 };
 
-function* fetchSeasonsOrEpisodesSaga(action) {
+type Action = {
+  payload: ReturnType;
+  type: string;
+};
+
+function* fetchSeasonsOrEpisodesSaga(action: Action): Generator {
   const { i, Season = '1', Episode = '' } = action.payload;
   const episodeParams = { i, Season, Episode };
   const seasonParams = { i, Season };
@@ -51,7 +56,7 @@ const seasonsEpisodeSlice = createSlice({
 });
 
 export const FETCH_SEASON = 'seasonsEpisode/fetchSeasonsOrEpisodes';
-export const fetchSeason = createAction(FETCH_SEASON);
+export const fetchSeason = createAction<ReturnType>(FETCH_SEASON);
 
 export const { setSeason, setEpisode, setError } = seasonsEpisodeSlice.actions;
 export { fetchSeasonsOrEpisodesSaga };

@@ -1,5 +1,3 @@
-import { useMemo } from 'react';
-import { IEpisode } from '../types/singleMovieTypes';
 import { useAppSelector } from '../redux/store';
 
 export function Episode() {
