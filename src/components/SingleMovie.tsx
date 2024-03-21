@@ -12,7 +12,11 @@ export function SingleMovie() {
     return <div>Error: {movieError}</div>;
   }
   if (movieIsLoading || !movie) {
-    return <div>Loading...</div>;
+    return (
+      <div className="spinner-border text-primary" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </div>
+    );
   }
 
   return (
@@ -43,8 +47,12 @@ export function SingleMovie() {
           </div>
         </div>
       </div>
-      <SeasonSelector {...movie} />
-      <Episode />
+      {movie.totalSeasons && (
+        <>
+          <SeasonSelector {...movie} />
+          <Episode />
+        </>
+      )}
     </>
   );
 }

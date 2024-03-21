@@ -10,11 +10,11 @@ import cl from '../styles/search.module.scss';
 
 export function Search() {
   const [searchValue, setSearchValue] = useState('');
-  const [typeValue, setTypeValue] = useState('movie');
+  const [typeValue, setTypeValue] = useState('');
   const [yearValue, setYearValue] = useState('');
+
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
   const handleClickSearch = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
   };
@@ -30,7 +30,9 @@ export function Search() {
     if (searchValue) {
       dispatch(setSearchTypeAction(typeValue));
       dispatch(setSearchValueAction(searchValue));
+
       dispatch(setSearchYearAction(yearValue));
+
       navigate('/search-page/1');
     }
   };
@@ -45,6 +47,8 @@ export function Search() {
       />
       <input
         placeholder="Year"
+        className="form-control"
+        style={{ width: 'fit-content' }}
         onChange={handleInputTypeValue}
         value={yearValue}
         type="text"
@@ -55,12 +59,15 @@ export function Search() {
         aria-label="Default select example"
         onChange={handleChangeTypeValue}
       >
-        <option defaultValue="true">Choose type</option>
+        <option defaultValue="true" value="">
+          Choose type
+        </option>
         <option value="movie">Movie</option>
         <option value="series">Series</option>
-        <option value="episode">Episode</option>
       </select>
-      <button type="submit">Find</button>
+      <button className="btn btn-primary" type="submit">
+        Find
+      </button>
     </form>
   );
 }

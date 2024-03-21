@@ -36,7 +36,7 @@ const initialState: InitType = {
   error: '',
   searchValue: '',
   pages: 1,
-  typeSearch: 'movie',
+  typeSearch: '',
   year: ''
 };
 
