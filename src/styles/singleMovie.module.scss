@@ -2,6 +2,7 @@
 .outer {
   display: flex;
   gap: 42px;
+  margin-bottom: 20px;
 }
 
 .infoTitle {
@@ -25,4 +26,10 @@
 .plot {
   margin-top: 30px;
   max-width: 878px;
+}
+
+@media screen and (max-width: 768px) {
+  .outer {
+    flex-direction: column;
+  }
 }

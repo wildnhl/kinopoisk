@@ -1,5 +1,6 @@
 import { useState, ChangeEvent, useEffect } from 'react';
-import type { ISingleMovie, Episode } from '../types/singleMovieTypes';
+import type { ISingleMovie } from '../types/types';
+import type { Episode } from '../types/interfaces';
 import { fetchSeason } from '../redux/seasons-episodes-slice';
 import { useAppDispatch, useAppSelector } from '../redux/store';
 

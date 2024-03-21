@@ -41,6 +41,7 @@ export function MovieList() {
           id={el.imdbID}
           Poster={el.Poster}
           Title={el.Title}
+          type={el.Type}
         />
       ))}
     </div>

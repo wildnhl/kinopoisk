@@ -47,7 +47,7 @@ export function SingleMovie() {
           </div>
         </div>
       </div>
-      {movie.totalSeasons && (
+      {movie.totalSeasons && movie.totalSeasons !== 'N/A' && (
         <>
           <SeasonSelector {...movie} />
           <Episode />

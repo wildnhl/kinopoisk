@@ -40,34 +40,39 @@ export function Search() {
   return (
     <form className={cl.form} onSubmit={handleSumbitForm}>
       <input
-        className={cl.searchInput}
+        className="form-control"
         onChange={handleClickSearch}
         value={searchValue}
         type="search"
+        placeholder="Search"
       />
-      <input
-        placeholder="Year"
-        className="form-control"
-        style={{ width: 'fit-content' }}
-        onChange={handleInputTypeValue}
-        value={yearValue}
-        type="text"
-      />
-      <select
-        style={{ width: 'fit-content' }}
-        className="form-select"
-        aria-label="Default select example"
-        onChange={handleChangeTypeValue}
-      >
-        <option defaultValue="true" value="">
-          Choose type
-        </option>
-        <option value="movie">Movie</option>
-        <option value="series">Series</option>
-      </select>
-      <button className="btn btn-primary" type="submit">
-        Find
-      </button>
+      <div className={cl.filter}>
+        <input
+          placeholder="Year"
+          className="form-control"
+          style={{ width: 'fit-content' }}
+          onChange={handleInputTypeValue}
+          value={yearValue}
+          type="text"
+        />
+        <p>Type:</p>
+        <select
+          style={{ width: 'fit-content' }}
+          className="form-select"
+          aria-label="Default select example"
+          onChange={handleChangeTypeValue}
+        >
+          <option defaultValue="true" value="">
+            Any
+          </option>
+          <option value="movie">Movie</option>
+          <option value="series">Series</option>
+          <option value="game">Game</option>
+        </select>
+        <button className="btn btn-primary" type="submit">
+          Find
+        </button>
+      </div>
     </form>
   );
 }

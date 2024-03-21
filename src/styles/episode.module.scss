@@ -1,0 +1,12 @@
+.outer {
+  // d-flex gap-5 mt-2
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 660px) {
+  .outer {
+    flex-direction: column;
+  }
+}

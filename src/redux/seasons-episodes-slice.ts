@@ -1,7 +1,8 @@
 import { call, put } from 'redux-saga/effects';
 import { createSlice, createAction } from '@reduxjs/toolkit';
 import { fetchSeasonsOrEpisodes } from '../services/seasons-episodes';
-import type { IEpisode, Season } from '../types/singleMovieTypes';
+import type { IEpisode } from '../types/types';
+import type { Season } from '../types/interfaces';
 
 type ReturnType = {
   i: string;

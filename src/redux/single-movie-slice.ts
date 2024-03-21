@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import type { ISingleMovie } from '../types/singleMovieTypes';
+import type { ISingleMovie } from '../types/types';
 import { fetchSingleMovie } from '../services/single-movie';
 
 export const fetchSingleMovieThunk = createAsyncThunk<
