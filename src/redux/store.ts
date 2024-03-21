@@ -15,6 +15,7 @@ function* sagas() {
 }
 const sagaMiddleware = createSagaMiddleware();
 const middlewares = [sagaMiddleware];
+
 export const store = configureStore({
   reducer: {
     singleMovie: singleMovieReducer,
