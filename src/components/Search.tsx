@@ -6,7 +6,7 @@ import {
   setSearchTypeAction,
   setSearchYearAction
 } from '../redux/search-movies-slice';
-import cl from '../styles/search.module.scss';
+import style from '../styles/search.module.scss';
 
 export function Search() {
   const [searchValue, setSearchValue] = useState('');
@@ -38,7 +38,7 @@ export function Search() {
   };
 
   return (
-    <form className={cl.form} onSubmit={handleSumbitForm}>
+    <form className={style.form} onSubmit={handleSumbitForm}>
       <input
         className="form-control"
         onChange={handleClickSearch}
@@ -46,7 +46,7 @@ export function Search() {
         type="search"
         placeholder="Search"
       />
-      <div className={cl.filter}>
+      <div className={style.filter}>
         <input
           placeholder="Year"
           className="form-control"

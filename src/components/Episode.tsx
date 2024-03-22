@@ -1,9 +1,8 @@
 import { useAppSelector } from '../redux/store';
-import cl from '../styles/episode.module.scss';
+import style from '../styles/episode.module.scss';
 
 export function Episode() {
   const episode = useAppSelector((state) => state.seasons.episode);
-
   if (!episode)
     return (
       <div className="spinner-border text-primary" role="status">
@@ -11,7 +10,7 @@ export function Episode() {
       </div>
     );
   return (
-    <div className={cl.outer}>
+    <div className={style.outer}>
       <img
         className="rounded-4"
         src={episode.Poster}

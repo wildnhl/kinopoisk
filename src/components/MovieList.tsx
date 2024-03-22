@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../redux/store';
 import { fetchSearchMoviesThunk } from '../redux/search-movies-slice';
 import { MovieCard } from './MovieCard';
-import cl from '../styles/movieList.module.scss';
+import style from '../styles/movieList.module.scss';
 
 export function MovieList() {
   const dispatch = useAppDispatch();
@@ -34,7 +34,7 @@ export function MovieList() {
   }
 
   return (
-    <div className={cl.outerStyle}>
+    <div className={style.outerStyle}>
       {movie.map((el) => (
         <MovieCard
           key={el.imdbID}
