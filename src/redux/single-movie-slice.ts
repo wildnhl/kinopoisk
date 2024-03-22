@@ -8,9 +8,9 @@ export const fetchSingleMovieThunk = createAsyncThunk<
   {
     rejectValue: string;
   }
->('singleMovie/fetchSingleMovieThunk', async (i, { rejectWithValue }) => {
+>('singleMovie/fetchSingleMovieThunk', async (id, { rejectWithValue }) => {
   try {
-    const data = await fetchSingleMovie({ i, plot: 'full' });
+    const data = await fetchSingleMovie({ i: id, plot: 'full' });
     if (data.Response === 'False') {
       throw new Error(data.Error);
     }

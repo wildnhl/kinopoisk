@@ -24,7 +24,7 @@ export function SeasonSelector(props: ISingleMovie) {
   useEffect(() => {
     dispatch(
       fetchSeason({
-        i: props.imdbID,
+        id: props.imdbID,
         Season: seasonValue,
         Episode: episodeValue
       })

@@ -30,7 +30,6 @@ export function Search() {
     if (searchValue) {
       dispatch(setSearchTypeAction(typeValue));
       dispatch(setSearchValueAction(searchValue));
-
       dispatch(setSearchYearAction(yearValue));
 
       navigate('/search-page/1');

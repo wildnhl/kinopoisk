@@ -5,7 +5,7 @@ import type { IEpisode } from '../types/types';
 import type { Season } from '../types/interfaces';
 
 type ReturnType = {
-  i: string;
+  id: string;
   Season: string;
   Episode?: string;
 };
@@ -16,9 +16,9 @@ type Action = {
 };
 
 function* fetchSeasonsOrEpisodesSaga(action: Action): Generator {
-  const { i, Season = '1', Episode = '' } = action.payload;
-  const episodeParams = { i, Season, Episode };
-  const seasonParams = { i, Season };
+  const { id, Season = '1', Episode = '' } = action.payload;
+  const episodeParams = { i: id, Season, Episode };
+  const seasonParams = { i: id, Season };
   try {
     const episode = yield call(fetchSeasonsOrEpisodes, episodeParams);
     const season = yield call(fetchSeasonsOrEpisodes, seasonParams);

@@ -1,10 +1,17 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { RootState } from './store';
-import { fetchSearchMovies, ParamsSearch } from '../services/search-movies';
+import { fetchSearchMovies } from '../services/search-movies';
+
+type ParamsSearchThunk = {
+  search: string;
+  page?: number;
+  type?: string;
+  year?: string;
+};
 
 export const fetchSearchMoviesThunk = createAsyncThunk<
   FetchResult,
-  ParamsSearch,
+  ParamsSearchThunk,
   {
     state: RootState;
     rejectValue: string;
@@ -12,11 +19,16 @@ export const fetchSearchMoviesThunk = createAsyncThunk<
 >(
   'searchMovies/fetchSearchMoviesThunk',
   async (opts, { rejectWithValue, getState }) => {
-    const { searchValue, typeSearch, year } = getState().searchMovies;
-    const { s = searchValue, page = 1, type = typeSearch, y = year } = opts;
-    try {
-      const data = await fetchSearchMovies({ s, page, type, y });
+    const { searchValue, typeSearch, yearSearch } = getState().searchMovies;
+    const {
+      search = searchValue,
+      page = 1,
+      type = typeSearch,
+      year = yearSearch
+    } = opts;
 
+    try {
+      const data = await fetchSearchMovies({ s: search, page, type, y: year });
       if (data.Error) {
         throw new Error(data.Error);
       }
@@ -37,7 +49,7 @@ const initialState: InitType = {
   searchValue: '',
   pages: 1,
   typeSearch: '',
-  year: ''
+  yearSearch: ''
 };
 
 export const searchMoviesSlice = createSlice({
@@ -51,7 +63,7 @@ export const searchMoviesSlice = createSlice({
       state.typeSearch = action.payload;
     },
     setSearchYearAction: (state, action) => {
-      state.year = action.payload;
+      state.yearSearch = action.payload;
     }
   },
   extraReducers: (builder) => {
@@ -93,7 +105,7 @@ type InitType = {
   searchValue: string;
   pages: number;
   typeSearch: string;
-  year: string;
+  yearSearch: string;
 };
 
 type FetchResult = {

@@ -14,13 +14,13 @@ export function MovieList() {
   const isLoading = useAppSelector((state) => state.searchMovies.isLoading);
   const searchValue = useAppSelector((state) => state.searchMovies.searchValue);
   const type = useAppSelector((state) => state.searchMovies.typeSearch);
-  const year = useAppSelector((state) => state.searchMovies.year);
+  const year = useAppSelector((state) => state.searchMovies.yearSearch);
 
   useEffect(() => {
     dispatch(
       fetchSearchMoviesThunk({
         page: Number(pageNumber),
-        s: searchValue
+        search: searchValue
       })
     );
   }, [dispatch, pageNumber, searchValue, type, year]);
