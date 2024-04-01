@@ -1,5 +1,5 @@
-import { useState, ChangeEvent, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { useAppDispatch } from '../redux/store';
 import {
   setSearchValueAction,
@@ -8,58 +8,50 @@ import {
 } from '../redux/search-movies-slice';
 import style from '../styles/search.module.scss';
 
-export function Search() {
-  const [searchValue, setSearchValue] = useState('');
-  const [typeValue, setTypeValue] = useState('');
-  const [yearValue, setYearValue] = useState('');
+type TypeInputs = {
+  searchValue: string;
+  typeValue: string;
+  yearValue: string;
+};
 
+export function Search() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const handleClickSearch = (event: ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(event.target.value);
-  };
-  const handleChangeTypeValue = (event: ChangeEvent<HTMLSelectElement>) => {
-    setTypeValue(event.target.value);
-  };
-  const handleInputTypeValue = (event: ChangeEvent<HTMLInputElement>) => {
-    setYearValue(event.target.value);
-  };
+  const { register, handleSubmit, setValue } = useForm<TypeInputs>();
 
-  const handleSumbitForm = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (searchValue) {
+  const onSubmitSearchForm: SubmitHandler<TypeInputs> = (data) => {
+    const { searchValue, typeValue, yearValue } = data;
+    if (searchValue.trim()) {
       dispatch(setSearchTypeAction(typeValue));
       dispatch(setSearchValueAction(searchValue));
       dispatch(setSearchYearAction(yearValue));
-
       navigate('/search-page/1');
+    } else {
+      setValue('searchValue', '');
     }
   };
 
   return (
-    <form className={style.form} onSubmit={handleSumbitForm}>
+    <form className={style.form} onSubmit={handleSubmit(onSubmitSearchForm)}>
       <input
         className="form-control"
-        onChange={handleClickSearch}
-        value={searchValue}
         type="search"
         placeholder="Search"
+        {...register('searchValue', { required: true })}
       />
       <div className={style.filter}>
         <input
           placeholder="Year"
           className="form-control"
           style={{ width: 'fit-content' }}
-          onChange={handleInputTypeValue}
-          value={yearValue}
           type="text"
+          {...register('yearValue')}
         />
         <p>Type:</p>
         <select
           style={{ width: 'fit-content' }}
           className="form-select"
-          aria-label="Default select example"
-          onChange={handleChangeTypeValue}
+          {...register('typeValue')}
         >
           <option defaultValue="true" value="">
             Any
